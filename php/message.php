@@ -78,7 +78,7 @@ function w()
       <div class="row">
         <div  class="col-sm-3 col-md-2 sidebar" >
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">OVERVIEW</a></li>
+              <li><a href="home.php">OVERVIEW</a></li>
              <li><a href="add_customer.php">ADD CUSTOMER</a></li>
             <li><a href="add_shop.php">ADD A SHOP</a></li>
             <li><a href="add_work.php">ADD A WORK</a></li>
@@ -86,63 +86,58 @@ function w()
             <li><a href="add_money.php">ADD MONEY</a></li>
 		
             <li><a href="account.php">SUMMARY</a></li>
+            <li class="active"><a href="message.php">INBOX</a></li>
+            
 
           </ul>
        
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="background-image:url('images/1.jpg') ;background-repeat: no-repeat; background-position: center;background-size: cover;">
-          <h1 class="page-header">Dashboard</h1>
+          <h1 class="page-header">INBOX</h1>
+          <?php
+              require_once 'db_connect.php';
+          $q="SELECT * FROM `message` ORDER BY date ;";
+					$res=mysqli_query($con,$q);
+					
+					echo "  <table class='table table-striped'>
+              <thead>
+                <tr>
+                  <th>SINO</th>
+                  <th>USER</th>
+                  <th>MESSAGE</th>
+                  <th>DATE</th>
+                 
+                </tr>
+              </thead>
+              <tbody>";
+					while($row=mysqli_fetch_array($res))
+					{
+						$sino=$row['sino'];
+						$user=$row['user'];
+                                                $user="INFCR".$user;
+                                                $message=$row['message'];
+						$date=$row['date'];
+						
+						
+                                                echo"'    <td>  $sino</td>
+                  <td>$user</td>
+                  <td>$message</td>
+                  <td>$date</td>
+				  
+                </tr>";
+                    }
 
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-               <a href="add_work.php" > <button type="button" class="btn btn-lg btn-success">ADD WORKS</button></a>
-            
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-             <a href="shops.php" > <button type="button" class="btn btn-lg btn-success">VIEW SHOPS</button></a>
-             
-            </div>
-            
-            <div class="col-xs-6 col-sm-3 placeholder">
-              
-             <a href="add_money.php" > <button type="button" class="btn btn-lg btn-success">ADD MONEY</button></a>
-              
-            </div>
-           
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <a href="add_shop.php"> <button type="button" class="btn btn-lg btn-success">ADD SHOPS</button></a>
-              
-              
-            </div>
-            
-            <div class="col-xs-6 col-sm-3 placeholder">
-                <a href="add_customer.php"> <button type="button" class="btn btn-lg btn-success">&nbsp; CUSTOMER</button></a>
-              
-              
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-                <a href="search.php"> <button type="button" class="btn btn-lg btn-success">&nbsp;&nbsp;&nbsp;SEARCH&nbsp;&nbsp;&nbsp;</button></a>
-              
-              
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-                <a href="worker.php"> <button type="button" class="btn btn-lg btn-success">&nbsp;&nbsp;&nbsp;WORKS&nbsp;&nbsp;&nbsp;</button></a>
-              
-              
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-                <a href="account.php"> <button type="button" class="btn btn-lg btn-success">SUMMARY&nbsp;&nbsp;</button></a>
-              
-              
-            </div>
-          </div>
-<br>
-          
-      <a href="worker.php">  <button class="btn btn-lg btn-primary btn-block" type="submit">WORKER'S  AREA</button></a>
-      <br><center> <a href="message.php">  <img   src="images/m.png" ></a>
-          <a href="message.php"><h2>INBOX</h2></a></center>
 
+       
+                                                        ?>
+
+               
+              </tbody>
+            </table>
           </div>
+        </div>
+      </div>
+    </div>
         </div>
       </div>
     </div>

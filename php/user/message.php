@@ -52,14 +52,14 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                  <li><a href="index.html">Home</a></li>
-                  <li ><a href="status.php">Work Status</a></li>
-                <li ><a href="about.php">About Us</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                      <li class="active"><a href="login.php">User Login</a></li>
-                    <li><a href="../index.php">Admin Login</a></li>
+                
+                  <li ><a href="home.php">Home</a></li>
+                  
+                  <li  ><a href="chpass.php">Change Password</a></li>
+                
+                  <li class="active"><a href="message.php">Message Admin</a></li>
+                 <li ><a href="logout.php">Logout</a></li>
+                
           
                
                   </ul>
@@ -75,21 +75,22 @@
 
    
 
-   <div class="container">
-
-       <form class="form-signin" action="sig.php" method="POST"><br>
-          <h2 class="form-signin-heading">Please sign in</h2><br>
-        <label for="inputEmail" class="sr-only">User Name</label>
-        <input type="text" id="inputEmail" class="form-control" name="user" placeholder="User Name" required autofocus><br>
-        [  Default User Name will be your work ID Eg-: INFCR1001 ]<br><br>
+  <div class="container">
+      <br><br>
+      <form class="form-signin" action="message2.php" method="POST">
+        <h2 class="form-signin-heading">MESSAGE</h2>
+        
+        
+<br>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required><br>
-        [  Default password will be Work ID with out letters ]
-        <br><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <textarea  class="form-control" placeholder="Enter Your Message" name="msg" required></textarea>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">SEND</button>
       </form>
 
     </div> <!-- /container -->
+
+
 
       <!-- FOOTER -->
       <footer>

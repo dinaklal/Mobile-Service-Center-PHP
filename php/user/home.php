@@ -1,3 +1,67 @@
+<html>
+<script src="../m/dist/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="../m/dist/sweetalert.css">
+
+    <script>
+function w() {
+swal({   title: "INFINITY",   text: "SELECT SHOP NAME AND DEVICE TYPE!",   type: "warning",  
+ showCancelButton: false,   confirmButtonColor: "#DD6B55",   confirmButtonText: "I am sorry!",   closeOnConfirm: false },
+ function(){
+    window.location.href = 'login.php';});
+
+ 
+};
+function s()
+{
+   var a= "<?php echo $i; ?>";
+
+	swal({ title:"WORK ADDED",text:"INF"+a+"  IS YOUR WORK ID", type:"success"},function(){
+    window.location.href = 'add_work.php';});
+}
+</script>
+   <html>
+<script src="../m/dist/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="../m/dist/sweetalert.css">
+<script>
+
+function s()
+{
+  
+
+	swal({ title:"INFINITY ",text:"Welcome User", type:"success"},function(){
+    window.location.href = 'home.php';});
+}
+function w()
+{
+  
+
+	swal({ title:"INFINITY ",text:"User Name Or Password Error", type:"warning"},function(){
+    window.location.href = 'login.php';});
+}
+</script><?php
+session_start();
+if(isset($_SESSION['customer']))
+{
+     $id=$_SESSION['customer'];
+    require_once '../db_connect.php';
+    $sql="SELECT * FROM `customer` WHERE id=$id ;";
+    $res=  mysqli_query($con, $sql);
+    $row = mysqli_fetch_array($res);
+
+			
+			
+			$id="INFCR".$id;
+			$name=$row['name'];
+                        $cont=$row['contact'];
+                        $plce=$row['place'];
+                        $type=$row['type'];
+                        
+                        $pay=$row['payment'];
+			$model=$row['model'];
+			$des=$row['description'];
+			$pblm=$row['problem'];
+			$dte=$row['date'];
+			$amnt=$row['amount'];
+			$status=$row['status'];  ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +73,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>USER STATUS</title>
+    <title><?php echo $name;?> STATUS</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -48,18 +112,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">INFINITY SHOP MANAGER</a>
+              <a class="navbar-brand" href="#">INFINITY USER[<?php echo $name;?>]</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                  <li><a href="index.html">Home</a></li>
-                  <li ><a href="status.php">Work Status</a></li>
-                <li ><a href="about.php">About Us</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                      <li class="active"><a href="login.php">User Login</a></li>
-                    <li><a href="../index.php">Admin Login</a></li>
+                
+                  <li class="active"><a href="#">Home</a></li>
+                  
+                  <li ><a href="chpass.php">Change Password</a></li>
+            
+                  <li ><a href="message.php">Message Admin</a></li>
+                 <li ><a href="logout.php">Logout</a></li>
+                
           
                
                   </ul>
@@ -74,22 +138,33 @@
 
 
    
+ <div class="container">
+          <?php
+        
 
-   <div class="container">
+       
+			echo " <b><br><br><br><br><div class='table-responsive'>
+            <table class='table table-bordered'>
+			
+			<tr><td>ID</td><td>$id</td></tr>
+                            <tr><td>NAME</td><td>$name</td></tr>
+                             <tr><td>CONTACT</td><td>$cont</td></tr>
+                             <tr><td>PLACE</td><td>$plce</td></tr>
+                             <tr><td>TYPE</td><td>$type</td></tr>
+			<tr><td>MODEL</td><td>$model</td></tr>
+			<tr><td>DESCRIPTION</td><td>$des</td></tr> 
+			<tr><td>PROBLEM</td><td>$pblm</td></tr>
+			<tr><td>AMOUNT</td><td>$amnt</td></tr>
+			<tr><td>STATUS</td><td>$status</td>
+</div></div></table><br><br>
 
-       <form class="form-signin" action="sig.php" method="POST"><br>
-          <h2 class="form-signin-heading">Please sign in</h2><br>
-        <label for="inputEmail" class="sr-only">User Name</label>
-        <input type="text" id="inputEmail" class="form-control" name="user" placeholder="User Name" required autofocus><br>
-        [  Default User Name will be your work ID Eg-: INFCR1001 ]<br><br>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required><br>
-        [  Default password will be Work ID with out letters ]
-        <br><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+        ";
 
-    </div> <!-- /container -->
+			
+   ?>
+
+
+
 
       <!-- FOOTER -->
       <footer>
@@ -112,3 +187,11 @@
     <script src="../js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
+<?php
+}
+else
+{
+ 
+     echo '<body onLoad="w()">';
+}
+?>
